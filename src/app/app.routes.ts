@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-
+import {authGuard} from './_guards/auth-guard';
 
 // Pour crée des sous routes, crée un fichier dans la _page/nom-de-la-page/nom-de-la-page.routes.ts avec la meme structure que ce fichier
 // Dans ce fichier ajouter une routes /catalogue qui load la route catalogue.routes.ts
@@ -36,7 +36,14 @@ export const routes: Routes = [
   {
     path: 'cart',
     loadComponent: () =>
-      import('./_pages/cart/cart').then(m => m.CartComponent)
+      import('./_pages/cart/cart').then(m => m.CartComponent),
+    data: { hideHeader: false, hideFooter: false }
+  },
+  {
+    path: 'account',
+    loadComponent: () =>
+      import('./_pages/account/account').then(m => m.Account),
+    canActivate: [authGuard]
   },
   {
     path: 'login',

@@ -1,5 +1,6 @@
 import { Injectable, signal, computed, effect } from '@angular/core';
 import { ProductInterface } from '../_interfaces/product';
+import { OrderInterface } from '../_interfaces/order';
 import {environment} from '../environments/environments';
 
 export type OrderMode = 'on-site' | 'takeaway' | null;
@@ -13,7 +14,8 @@ export interface CartItem {
   providedIn: 'root'
 })
 export class CartService {
-  private readonly STORAGE_KEY = environment.STORAGE_KEY_CART; // Clé demandée
+  private readonly STORAGE_KEY = environment.STORAGE_KEY_CART;
+  private readonly ORDERS_KEY = environment.STORAGE_KEY_COMMANDES;
 
   // Signal principal du panier
   items = signal<CartItem[]>([]);
@@ -29,6 +31,22 @@ export class CartService {
     effect(() => {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.items()));
     });
+  }
+  checkout(finalTotal: number) {
+    const currentOrders = JSON.parse(localStorage.getItem(this.ORDERS_KEY) || '[]');
+
+    const newOrder: OrderInterface = {
+      id: Math.random().toString(36).substr(2, 9).toUpperCase(),
+      date: new Date(),
+      items: this.items(),
+      mode: this.orderMode(),
+      total: finalTotal
+    };
+
+    currentOrders.unshift(newOrder); // On ajoute au début pour avoir la plus récente en haut
+    localStorage.setItem(this.ORDERS_KEY, JSON.stringify(currentOrders));
+
+    this.clearCart(); // On vide le panier après le paiement
   }
 
   addToCart(product: ProductInterface) {

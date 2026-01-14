@@ -15,11 +15,15 @@
       <span class="text-[10px] font-bold uppercase tracking-widest">Box</span>
     </a>
 
-    <a routerLink="/login" routerLinkActive="text-orange-500" class="flex flex-col items-center gap-1 group transition-colors text-neutral-500">
+    <a [routerLink]="loginService.isLoggedIn() ? '/account' : '/login'"
+       routerLinkActive="text-orange-500"
+       class="flex flex-col items-center gap-1 group text-neutral-500">
       <div class="relative">
-        <i class="fa-solid fa-user text-xl transition-transform group-hover:-translate-y-1"></i>
+        <i class="fa-solid fa-user text-xl"></i>
       </div>
-      <span class="text-[10px] font-bold uppercase tracking-widest">Compte</span>
+      <span class="text-[10px] font-bold uppercase tracking-widest">
+    {{ loginService.isLoggedIn() ? 'Profil' : 'Connexion' }}
+  </span>
     </a>
 
     <a routerLink="/cart" routerLinkActive="text-orange-500" class="flex flex-col items-center gap-1 group transition-colors text-neutral-500">

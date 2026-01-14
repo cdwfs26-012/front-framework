@@ -53,6 +53,11 @@ Pour tester les fonctionnalités d'authentification :
 
 ## 📱 Fonctionnalités principales
 
+### 🧾 Page Account (`/account`) si log
+* Voir ses différentes commandes.
+* Détails de chaque commande.
+* Pour ajouter une commande, il suffit de passer commande via le panier.
+
 ### 🏠 Page Home (`/home`)
 * Sélection du mode : **Sur place** ou **À emporter**.
 * Persistance du choix pour le tunnel de commande.
@@ -89,6 +94,7 @@ Pour tester les fonctionnalités d'authentification :
 src/
 ├── app/
 │   ├── _components/    # Composants réutilisables (Navbar, Liste des produits...)
+│   ├── _guards/    # Securisé /account
 │   ├── _pages/         # Composants de pages (Home, Catalogue...)
 │   ├── _services/      # Logique métier et appels API
 │   ├── environments/      # Configuration des environnements

@@ -6,5 +6,6 @@ export const environment = {
   AUTH_TOKEN_KEY:'auth_token_sushi_dev',
   API_URL_PRODUCTS:'data/produits.json',
   API_URL_CATEGORIES:'data/categories.json',
-  API_URL_COLLECTIONS:'data/collections.json'
+  API_URL_COLLECTIONS:'data/collections.json',
+  STORAGE_KEY_COMMANDES:'auth_token_sushi_orders'
 }

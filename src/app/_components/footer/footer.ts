@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { CartService } from '../../_services/cart'; // Chemin à adapter selon ton projet
+import { CartService } from '../../_services/cart';
+import {LoginService} from '../../_services/login'; // Chemin à adapter selon ton projet
 
 @Component({
   selector: 'app-footer',
@@ -10,4 +11,5 @@ import { CartService } from '../../_services/cart'; // Chemin à adapter selon t
 })
 export class Footer {
   public cartService = inject(CartService);
+  public loginService = inject(LoginService);
 }
