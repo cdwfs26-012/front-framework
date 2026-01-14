@@ -1,0 +1,41 @@
+<footer class="fixed bottom-0 left-0 right-0 z-50 bg-neutral-950/80 backdrop-blur-lg border-t border-neutral-800 pb-safe">
+  <nav class="max-w-md mx-auto px-6 h-20 flex items-center justify-between">
+
+    <a routerLink="/catalogue" routerLinkActive="text-orange-500" class="flex flex-col items-center gap-1 group transition-colors text-neutral-500">
+      <div class="relative">
+        <i class="fa-solid fa-utensils text-xl transition-transform group-hover:-translate-y-1"></i>
+      </div>
+      <span class="text-[10px] font-bold uppercase tracking-widest">Catalogue</span>
+    </a>
+
+    <a routerLink="/my-box" routerLinkActive="text-orange-500" class="flex flex-col items-center gap-1 group transition-colors text-neutral-500">
+      <div class="relative">
+        <i class="fa-solid fa-box-open text-xl transition-transform group-hover:-translate-y-1"></i>
+      </div>
+      <span class="text-[10px] font-bold uppercase tracking-widest">Box</span>
+    </a>
+
+    <a routerLink="/login" routerLinkActive="text-orange-500" class="flex flex-col items-center gap-1 group transition-colors text-neutral-500">
+      <div class="relative">
+        <i class="fa-solid fa-user text-xl transition-transform group-hover:-translate-y-1"></i>
+      </div>
+      <span class="text-[10px] font-bold uppercase tracking-widest">Compte</span>
+    </a>
+
+    <a routerLink="/cart" routerLinkActive="text-orange-500" class="flex flex-col items-center gap-1 group transition-colors text-neutral-500">
+      <div class="relative">
+        <i class="fa-solid fa-cart-shopping text-xl transition-transform group-hover:-translate-y-1"></i>
+
+        @if (cartService.totalQuantity() > 0) {
+          <span class="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-orange-500 text-[10px] font-black text-black ring-2 ring-neutral-950 animate-in zoom-in duration-300">
+            {{ cartService.totalQuantity() }}
+          </span>
+        }
+      </div>
+      <span class="text-[10px] font-bold uppercase tracking-widest">Panier</span>
+    </a>
+
+  </nav>
+</footer>
+
+<div class="h-24 bg-black"></div>

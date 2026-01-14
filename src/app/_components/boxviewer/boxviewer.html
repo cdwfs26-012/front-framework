@@ -1,0 +1,23 @@
+<div class="isometric-box" [ngClass]="'box-' + boxService.boxSize()">
+
+  <div class="face front"></div>
+  <div class="face back"></div>
+  <div class="face right"></div>
+  <div class="face left"></div>
+  <div class="face bottom"></div>
+
+  <div class="face section1x"></div>
+  <div class="face section1y"></div>
+  <div class="face section2x"></div>
+  <div class="face section2y"></div>
+
+  @for (item of boxService.items(); track $index) {
+    <img [src]="item.image"
+         class="maki"
+         [ngClass]="'maki-' + ($index + 1)"
+         #prodImg
+         (error)="prodImg.src = 'data/produits/placeholder.png'"
+         (click)="boxService.removeProduct($index)"
+         alt="Sushi">
+  }
+</div>

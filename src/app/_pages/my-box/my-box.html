@@ -1,0 +1,44 @@
+<div class="min-h-screen bg-black text-white flex flex-col overflow-hidden">
+
+  <div class="flex-grow flex items-center justify-center p-10 overflow-visible relative">
+
+    @if (boxService.canAddToCart()) {
+      <div class="absolute top-10 right-10 z-50">
+        <button (click)="confirmBox()"
+                class="bg-white text-black font-black px-6 py-4 rounded-2xl shadow-xl hover:bg-orange-500 hover:text-white transition-all uppercase text-xs tracking-widest flex items-center gap-3">
+          <i class="fa-solid fa-cart-plus"></i>
+          Ajouter cette boîte
+        </button>
+      </div>
+    }
+
+    <app-boxviewer></app-boxviewer>
+  </div>
+
+  <div class="relative z-10 bg-neutral-900/80 backdrop-blur-md border-t border-neutral-800 p-6">
+    <div class="text-center mb-4">
+      <h2 class="uppercase tracking-[0.2em] text-[10px] font-bold text-neutral-400">
+        {{ boxService.items().length }} / 9 PRODUITS SÉLECTIONNÉS
+      </h2>
+      <div class="w-32 h-1 bg-neutral-800 mx-auto mt-2 rounded-full overflow-hidden">
+        <div class="h-full bg-orange-500 transition-all duration-500"
+             [style.width.%]="(boxService.items().length / 9) * 100"></div>
+      </div>
+    </div>
+
+    <div class="flex overflow-x-auto gap-4 no-scrollbar pb-4 px-2">
+      @for (product of productsService.products(); track product.reference) {
+        <button (click)="boxService.addProduct(product)"
+                class="flex-none w-24 group outline-none">
+          <div class="aspect-square bg-black rounded-2xl border border-neutral-800 p-2 group-hover:border-orange-500 group-active:scale-95 transition-all duration-300">
+            <img [src]="product.image" class="w-full h-full object-contain"
+                 #prodImg (error)="prodImg.src = 'data/produits/placeholder.png'">
+          </div>
+          <span class="text-[9px] block mt-2 truncate text-center uppercase font-bold tracking-tight text-neutral-500 group-hover:text-white">
+            {{ product.name }}
+          </span>
+        </button>
+      }
+    </div>
+  </div>
+</div>
